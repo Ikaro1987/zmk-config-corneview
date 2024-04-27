@@ -77,7 +77,7 @@
 
       adjus_layer {
 // /-----------------------------------------------------------\         /-----------------------------------------------------------\
-// |         |         |         |         |         |         |         |         |   F9    |   F10   |   F11   |   F12   |         |
+// | BT_CLR  |         |         |         |         |         |         |         |   F9    |   F10   |   F11   |   F12   |         |
 // |---------|---------|---------|---------|---------|---------|         |---------|---------|---------|---------|---------|---------|
 // |         |  R_ALT  |   GUI   |  L_CTL  |  SHIFT  |         |         |         |   F5    |   F6    |   F7    |   F8    |         |
 // |---------|---------|---------|---------|---------|---------|         |---------|---------|---------|---------|---------|---------|
@@ -86,9 +86,9 @@
 //                               |         |         |         |         |         |         |         |
 //                               `-----------------------------'         '-----------------------------'
          bindings = <
-            &none   &none      &none      &none       &none       &none           &none   &kp F9   &kp F10   &kp F11   &kp F12   &none
-            &none   &kp RALT   &kp LGUI   &kp LCTRL   &kp LSHFT   &none           &none   &kp F5   &kp F6    &kp F7    &kp F8    &none
-            &none   &none      &none      &none       &none       &none           &none   &kp F1   &kp F2    &kp F3    &kp F4    &none
+            &bt BT_CLR   &none      &none      &none       &none       &none           &none   &kp F9   &kp F10   &kp F11   &kp F12   &none
+            &none        &kp RALT   &kp LGUI   &kp LCTRL   &kp LSHFT   &none           &none   &kp F5   &kp F6    &kp F7    &kp F8    &none
+            &none        &none      &none      &none       &none       &none           &none   &kp F1   &kp F2    &kp F3    &kp F4    &none
                                           &none       &trans      &none           &none   &trans   &none
          >;
       };
@@ -100,6 +100,16 @@
             timeout-ms = <50>;
             key-positions = <0 1>;
             bindings = <&kp ESC>;
+        };
+        combo_may {
+            timeout-ms = <50>;
+            key-positions = <17 18>;
+            bindings = <&kp CAPS>;
+        };
+        combo_del {
+            timeout-ms = <50>;
+            key-positions = <10 11>;
+            bindings = <&kp DEL>;
         };
     };
 
