@@ -129,10 +129,10 @@
 
         symb {
             bindings = <
-&trans     &kp CARET  &kp AMPS  &kp ASTRK  &kp LPAR   &kp RPAR     &kp PLUS  &kp UNDER  &kp LBRC  &kp RBRC  &kp PIPE   &trans
-&trans     &kp EXCL   &kp AT    &kp HASH   &kp DLLR   &kp PRCNT    &trans    &trans     &trans    &trans    &kp COLON  &trans
-&kp TILDE  &kp BSLH   &kp LBKT  &kp RBKT   &kp MINUS  &kp EQUAL    &trans    &trans     &kp LT    &kp GT    &kp QMARK  &kp DOUBLE_QUOTES
-                                &trans     &trans     &trans       &trans    &trans     &trans
+&trans     &kp EXCL  &kp AT    &kp HASH  &kp DLLR   &kp PRCNT    &kp CARET  &kp AMPS  &kp ASTRK  &kp LPAR  &kp RPAR   &trans
+&trans     &kp PIPE  &kp LBRC  &kp RBRC  &kp UNDER  &kp PLUS     &trans     &trans    &trans     &trans    &kp COLON  &trans
+&kp TILDE  &kp BSLH  &kp LBKT  &kp RBKT  &kp MINUS  &kp EQUAL    &trans     &trans    &kp LT     &kp GT    &kp QMARK  &kp DOUBLE_QUOTES
+                               &trans    &trans     &trans       &trans     &trans    &trans
             >;
         };
     };
