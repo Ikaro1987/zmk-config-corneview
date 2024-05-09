@@ -3,125 +3,137 @@
  *
  * SPDX-License-Identifier: MIT
  */
+
 #include <behaviors.dtsi>
 #include <dt-bindings/zmk/keys.h>
-#include <dt-bindings/zmk/bt.h>
 
 #define DEFAULT 0
 #define LOWER   1
 #define RAISE   2
 #define ADJUS   3
+#define SYMB   4
 
 / {
-  combos {
-    compatible = "zmk,combos";
+    combos {
+        compatible = "zmk,combos";
 
-    cmb_caps {
-      key-positions = <17 18>;
-      bindings = <&kp CAPS>;
+        cmb_caps {
+            key-positions = <17 18>;
+            bindings = <&kp CAPS>;
+        };
+
+        cmb_esc {
+            key-positions = <4 5>;
+            bindings = <&kp ESC>;
+        };
+
+        cmb_del {
+            key-positions = <6 7>;
+            bindings = <&kp DEL>;
+        };
+
+        cmb_f5 {
+            key-positions = <30 31>;
+            bindings = <&kp F5>;
+        };
+
+        cmb_f10 {
+            key-positions = <31 32>;
+            bindings = <&kp F10>;
+        };
+
+        cmb_f11 {
+            key-positions = <32 33>;
+            bindings = <&kp F11>;
+        };
+
+        cmb_f12 {
+            key-positions = <33 34>;
+            bindings = <&kp F12>;
+        };
     };
 
-    cmb_esc {
-      key-positions = <4 5>;
-      bindings = <&kp ESC>;
+    behaviors {
+        hml: homewrow_mods_left {
+            label = "HOMEROW_MODS_LEFT_HAND";
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+            flavor = "tap-preferred";
+            tapping-term-ms = <200>;
+            quick-tap-ms = <150>;
+            bindings = <&kp>, <&kp>;
+
+            hold-trigger-key-positions = <6 7 8 9 10 11 18 19 20 21 22 23 30 31 32 33 34 35 39 40 41>;
+        };
+
+        hmr: homewrow_mods_right {
+            label = "HOMEROW_MODS_RIGHT_HAND";
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+            flavor = "tap-preferred";
+            tapping-term-ms = <200>;
+            quick-tap-ms = <150>;
+            bindings = <&kp>, <&kp>;
+
+            hold-trigger-key-positions = <0 1 2 3 4 5 12 13 14 15 16 17 24 25 26 27 28 29 36 37 38>;
+        };
     };
 
-    cmb_del {
-      key-positions = <6 7>;
-      bindings = <&kp DEL>;
+    conditional_layers {
+        compatible = "zmk,conditional-layers";
+
+        tri_layer {
+            if-layers = <LOWER RAISE>;
+            then-layer = <ADJUS>;
+        };
     };
 
-    cmb_f5 {
-      key-positions = <30 31>;
-      bindings = <&kp F5>;
+    keymap {
+        compatible = "zmk,keymap";
+
+        base {
+            bindings = <
+&kp TAB          &kp Q            &kp W        &kp E         &kp R          &kp T        &kp Y      &kp U          &kp I         &kp O        &kp P                &kp BACKSPACE
+&hml LSHFT CAPS  &hml LEFT_ALT A  &hml LGUI S  &hml LCTRL D  &hml LSHIFT F  &kp G        &kp H      &hmr RSHIFT J  &hmr RCTRL K  &hmr RGUI L  &hmr RIGHT_ALT SEMI  &kp RSHIFT
+&kp GRAVE        &kp Z            &kp X        &kp C         &kp V          &kp B        &kp N      &kp M          &kp COMMA     &kp DOT      &kp FSLH             &kp SQT
+                                               &kp LCTRL     &mo LOWER      &kp ENTER    &kp SPACE  &mo RAISE      &mo SYMB
+            >;
+        };
+
+        lower {
+            bindings = <
+&kp ESC   &kp N1    &kp N2    &kp N3     &kp N4     &kp N5    &kp N6  &kp N7  &kp N8  &kp N9  &kp N0  &kp DEL
+&kp CAPS  &kp RALT  &kp LGUI  &kp LCTRL  &kp LSHFT  &none     &none   &kp N4  &kp N5  &kp N6  &none   &kp K_CMENU
+&none     &none     &none     &none      &none      &none     &none   &kp N1  &kp N2  &kp N3  &none   &none
+                              &none      &trans     &none     &none   &trans  &none
+            >;
+        };
+
+        raise {
+            bindings = <
+&none  &none     &none     &none      &none      &none    &kp PG_UP  &kp HOME  &kp UP    &kp END    &none  &kp INS
+&none  &kp RALT  &kp LGUI  &kp LCTRL  &kp LSHFT  &none    &kp PG_DN  &kp LEFT  &kp DOWN  &kp RIGHT  &none  &none
+&none  &none     &none     &none      &none      &none    &none      &none     &none     &none      &none  &none
+                           &none      &trans     &none    &none      &trans    &none
+            >;
+        };
+
+        adjust {
+            bindings = <
+&none  &none     &none     &none      &none      &none    &none  &kp F9  &kp F10  &kp F11  &kp F12  &none
+&none  &kp RALT  &kp LGUI  &kp LCTRL  &kp LSHFT  &none    &none  &kp F5  &kp F6   &kp F7   &kp F8   &none
+&none  &none     &none     &none      &none      &none    &none  &kp F1  &kp F2   &kp F3   &kp F4   &none
+                           &none      &trans     &none    &none  &trans  &none
+            >;
+        };
+
+        symb {
+            bindings = <
+&trans     &kp CARET  &kp AMPS  &kp ASTRK  &kp LPAR   &kp RPAR     &kp PLUS  &kp UNDER  &kp LBRC  &kp RBRC  &kp PIPE   &trans
+&trans     &kp EXCL   &kp AT    &kp HASH   &kp DLLR   &kp PRCNT    &trans    &trans     &trans    &trans    &kp COLON  &trans
+&kp TILDE  &kp BSLH   &kp LBKT  &kp RBKT   &kp MINUS  &kp EQUAL    &trans    &trans     &kp LT    &kp GT    &kp QMARK  &kp DOUBLE_QUOTES
+                                &trans     &trans     &trans       &trans    &trans     &trans
+            >;
+        };
     };
-
-    cmb_f10 {
-      key-positions = <31 32>;
-      bindings = <&kp F10>;
-    };
-
-    cmb_f11 {
-      key-positions = <32 33>;
-      bindings = <&kp F11>;
-    };
-
-    cmb_f12 {
-      key-positions = <33 34>;
-      bindings = <&kp F12>;
-    };
-  };
-
-  behaviors {
-    hml: homewrow_mods_left {
-      label = "HOMEROW_MODS_LEFT_HAND";
-      compatible = "zmk,behavior-hold-tap";
-      #binding-cells = <2>;
-      flavor = "tap-preferred";
-      tapping-term-ms = <200>;
-      quick-tap-ms = <150>;
-      bindings = <&kp>, <&kp>;
-      hold-trigger-key-positions = <6 7 8 9 10 11 18 19 20 21 22 23 30 31 32 33 34 35 39 40 41>;
-    };
-
-    hmr: homewrow_mods_right {
-      label = "HOMEROW_MODS_RIGHT_HAND";
-      compatible = "zmk,behavior-hold-tap";
-      #binding-cells = <2>;
-      flavor = "tap-preferred";
-      tapping-term-ms = <200>;
-      quick-tap-ms = <150>;
-      bindings = <&kp>, <&kp>;
-      hold-trigger-key-positions = <0 1 2 3 4 5 12 13 14 15 16 17 24 25 26 27 28 29 36 37 38>;
-    };
-  };
-
-  conditional_layers {
-    compatible = "zmk,conditional-layers";
-
-    tri_layer {
-      if-layers = <LOWER RAISE>;
-      then-layer = <ADJUS>;
-    };
-  };
-
-  keymap {
-    compatible = "zmk,keymap";
-
-    base {
-      bindings = <
-        &kp TAB          &kp Q            &kp W        &kp E         &kp R          &kp T        &kp Y      &kp U          &kp I         &kp O        &kp P                &kp BACKSPACE
-        &hml LSHFT CAPS  &hml LEFT_ALT A  &hml LGUI S  &hml LCTRL D  &hml LSHIFT F  &kp G        &kp H      &hmr RSHIFT J  &hmr RCTRL K  &hmr RGUI L  &hmr RIGHT_ALT SEMI  &kp RSHIFT
-        &kp GRAVE        &kp Z            &kp X        &kp C         &kp V          &kp B        &kp N      &kp M          &kp COMMA     &kp DOT      &kp FSLH             &kp SQT
-                                                       &kp LGUI      &mo LOWER      &kp ENTER    &kp SPACE  &mo RAISE      &kp LCTRL
-      >;
-    };
-
-    lower {
-      bindings = <
-        &kp ESC   &none     &none     &none      &none      &none    &kp MINUS  &kp EQUAL  &kp LBKT  &kp RBKT  &kp BSLH  &kp DEL
-        &kp CAPS  &kp RALT  &kp LGUI  &kp LCTRL  &kp LSHFT  &none    &kp N1     &kp N2     &kp N3    &kp N4    &kp N5    &kp K_CMENU
-        &none     &none     &none     &none      &none      &none    &kp N6     &kp N7     &kp N8    &kp N9    &kp N0    &none
-                                      &none      &trans     &none    &none      &trans     &none
-      >;
-    };
-
-    raise {
-      bindings = <
-        &none  &none     &none     &none      &none      &none    &kp PG_UP  &kp HOME  &kp UP    &kp END    &none  &kp INS
-        &none  &kp RALT  &kp LGUI  &kp LCTRL  &kp LSHFT  &none    &kp PG_DN  &kp LEFT  &kp DOWN  &kp RIGHT  &none  &none
-        &none  &none     &none     &none      &none      &none    &none      &none     &none     &none      &none  &none
-                                   &none      &trans     &none    &none      &trans    &none
-      >;
-    };
-
-    adjust {
-      bindings = <
-        &none  &none     &none     &none      &none      &none    &none  &kp F9  &kp F10  &kp F11  &kp F12  &none
-        &none  &kp RALT  &kp LGUI  &kp LCTRL  &kp LSHFT  &none    &none  &kp F5  &kp F6   &kp F7   &kp F8   &none
-        &none  &none     &none     &none      &none      &none    &none  &kp F1  &kp F2   &kp F3   &kp F4   &none
-                                   &none      &trans     &none    &none  &trans  &none
-      >;
-    };
-  };
 };
