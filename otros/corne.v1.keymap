@@ -1,0 +1,174 @@
+/*
+ * Copyright (c) 2020 The ZMK Contributors
+ *
+ * SPDX-License-Identifier: MIT
+ */
+
+#include <behaviors.dtsi>
+#include <dt-bindings/zmk/keys.h>
+#include <dt-bindings/zmk/bt.h>
+
+#define DEFAULT 0
+#define LOWER   1
+#define RAISE   2
+#define ADJUS   3
+
+// Home row mods macro
+#define HRML(k1,k2,k3,k4) &ht LALT k1    &ht LGUI k2    &ht LCTRL k3   &ht LSHFT k4
+#define HRMR(k1,k2,k3,k4) &ht RSHFT k1   &ht RCTRL k2   &ht RGUI k3    &ht RALT k4
+
+/ {
+   keymap {
+      compatible = "zmk,keymap";
+
+      default_layer {
+// /-----------------------------------------------------------\         /-----------------------------------------------------------\
+// |   TAB   |    Q    |    W    |    E    |    R    |    T    |         |    Y    |    U    |    I    |    O    |    P    |  BACKS  |
+// |---------|---------|---------|---------|---------|---------|         |---------|---------|---------|---------|---------|---------|
+// |  SHIFT  |    A    |    S    |    D    |    F    |    G    |         |    H    |    J    |    K    |    L    |    ;:   |  RSHIFT |
+// |---------|---------|---------|---------|---------|---------|         |---------|---------|---------|---------|---------|---------|
+// |    `~   |    Z    |    X    |    C    |    V    |    B    |         |    N    |    M    |    ,<   |    .>   |    /?   |    '"   |
+// |---------|---------|---------|---------|---------|---------|         |---------|---------|---------|---------|---------|---------|
+//                               |  L_CTL  |  LOWER  |  ENTER  |         |  SPACE  |  RAISE  |   GUI   |
+//                               `-----------------------------'         '-----------------------------'
+         bindings = <
+            &kp TAB     &kp Q   &kp W   &kp E       &kp R       &kp T               &kp Y       &kp U       &kp I       &kp O     &kp P      &kp BSPC
+            &kp LSHFT   HRML(A,     S,      D,          F)      &kp G               &kp H       HRMR(J,         K,          L,     SEMI)     &kp RSHFT
+            &kp GRAVE   &kp Z   &kp X   &kp C       &kp V       &kp B               &kp N       &kp M       &kp COMMA   &kp DOT   &kp FSLH   &kp SQT
+                                        &kp LCTRL   &mo LOWER   &kp ENTER           &kp SPACE   &mo RAISE   &kp LGUI
+         >;
+      };
+
+      lower_layer {
+// /-----------------------------------------------------------\         /-----------------------------------------------------------\
+// |   ESC   |    ^    |    &    |    *    |    (    |    )    |         |    6    |    7    |    8    |    9    |    0    |   DEL   |
+// |---------|---------|---------|---------|---------|---------|         |---------|---------|---------|---------|---------|---------|
+// |  CAPS   |    !    |    @    |    #    |    $    |    %    |         |    1    |    2    |    3    |    4    |    5    |  MENU   |
+// |---------|---------|---------|---------|---------|---------|         |---------|---------|---------|---------|---------|---------|
+// |    ~    |    |    |    _    |    {    |    }    |    +    |         |    =    |    [    |    ]    |    -    |    \    |    "    |
+// |---------|---------|---------|---------|---------|---------|         |---------|---------|---------|---------|---------|---------|
+//                               |         |  LOWER  |         |         |         |  RAISE  |         |
+//                               `-----------------------------'         '-----------------------------'
+         bindings = <
+            &kp ESC     &kp CARET   &kp AMPS    &kp ASTRK   &kp LPAR   &kp RPAR                &kp N6      &kp N7     &kp N8     &kp N9      &kp N0     &kp DEL
+            &kp CAPS    &kp EXCL    &kp AT      &kp HASH    &kp DLLR   &kp PRCNT               &kp N1      &kp N2     &kp N3     &kp N4      &kp N5     &kp K_CMENU
+            &kp TILDE   &kp PIPE    &kp UNDER   &kp LBRC    &kp RBRC   &kp PLUS                &kp EQUAL   &kp LBKT   &kp RBKT   &kp MINUS   &kp BSLH   &kp DQT
+                                                &none       &trans     &none                   &none       &trans     &none
+         >;
+      };
+
+      raise_layer {
+// /-----------------------------------------------------------\         /-----------------------------------------------------------\
+// |         |         |         |         |         |         |         |  PG_UP  |  HOME   |   UP    |   END   |         |   INS   |
+// |---------|---------|---------|---------|---------|---------|         |---------|---------|---------|---------|---------|---------|
+// |         |  R_ALT  |   GUI   |  L_CTL  |  SHIFT  |         |         |  PG_DN  |  LEFT   |  DOWN   |  RIGHT  |         |         |
+// |---------|---------|---------|---------|---------|---------|         |---------|---------|---------|---------|---------|---------|
+// |         |         |         |         |         |         |         |         |         |         |         |         |         |
+// |---------|---------|---------|---------|---------|---------|         |---------|---------|---------|---------|---------|---------|
+//                               |         |  LOWER  |         |         |         |  RAISE  |         |
+//                               `-----------------------------'         '-----------------------------'
+         bindings = <
+            &none     &none      &none      &none       &none       &none             &kp PG_UP   &kp HOME   &kp UP     &kp END     &none   &kp INS
+            &none     &kp RALT   &kp LGUI   &kp LCTRL   &kp LSHFT   &none             &kp PG_DN   &kp LEFT   &kp DOWN   &kp RIGHT   &none   &none
+            &none     &none      &none      &none       &none       &none             &none       &none      &none      &none       &none   &none
+                                            &none       &trans      &none             &none       &trans     &none
+         >;
+      };
+
+      adjus_layer {
+// /-----------------------------------------------------------\         /-----------------------------------------------------------\
+// | BT_CLR  |         |         |         |         |         |         |         |   F9    |   F10   |   F11   |   F12   |         |
+// |---------|---------|---------|---------|---------|---------|         |---------|---------|---------|---------|---------|---------|
+// |         |  R_ALT  |   GUI   |  L_CTL  |  SHIFT  |         |         |         |   F5    |   F6    |   F7    |   F8    |         |
+// |---------|---------|---------|---------|---------|---------|         |---------|---------|---------|---------|---------|---------|
+// |         |         |         |         |         |         |         |         |   F1    |   F2    |   F3    |   F4    |         |
+// |---------|---------|---------|---------|---------|---------|         |---------|---------|---------|---------|---------|---------|
+//                               |         |  LOWER  |         |         |         |  RAISE  |         |
+//                               `-----------------------------'         '-----------------------------'
+         bindings = <
+            &bt BT_CLR   &none      &none      &none       &none       &none           &none   &kp F9   &kp F10   &kp F11   &kp F12   &none
+            &none        &kp RALT   &kp LGUI   &kp LCTRL   &kp LSHFT   &none           &none   &kp F5   &kp F6    &kp F7    &kp F8    &none
+            &none        &none      &none      &none       &none       &none           &none   &kp F1   &kp F2    &kp F3    &kp F4    &none
+                                          &none       &trans      &none           &none   &trans   &none
+         >;
+      };
+   };
+
+// /-----------------------------------\         /-----------------------------------\
+// |  0  |  1  |  2  |  3  |  4  |  5  |         |  6  |  7  |  8  |  9  |  10 |  11 |
+// |-----|-----|-----|-----|-----|-----|         |-----|-----|-----|-----|-----|-----|
+// |  12 |  13 |  14 |  15 |  16 |  17 |         |  18 |  19 |  20 |  21 |  22 |  23 |
+// |-----|-----|-----|-----|-----|-----|         |-----|-----|-----|-----|-----|-----|
+// |  24 |  25 |  26 |  27 |  28 |  29 |         |  30 |  31 |  32 |  33 |  34 |  35 |
+// |-----|-----|-----|-----|-----|-----|         |-----|-----|-----|-----|-----|-----|
+//                   |  36 |  37 |  38 |         |  39 |  40 |  41 |
+//                   `-----------------'         '-----------------'
+   combos {
+        compatible = "zmk,combos";
+        combo_esc {
+            timeout-ms = <50>;
+            key-positions = <3 4>;
+            bindings = <&kp ESC>;
+        };
+        combo_del {
+            timeout-ms = <50>;
+            key-positions = <7 8>;
+            bindings = <&kp DEL>;
+        };
+        combo_F5 {
+            timeout-ms = <50>;
+            key-positions = <28 29>;
+            bindings = <&kp F5>;
+        };
+        combo_F10 {
+            timeout-ms = <50>;
+            key-positions = <25 26>;
+            bindings = <&kp F10>;
+        };
+        combo_F11 {
+            timeout-ms = <50>;
+            key-positions = <26 27>;
+            bindings = <&kp F11>;
+        };
+        combo_F12 {
+            timeout-ms = <50>;
+            key-positions = <28 29>;
+            bindings = <&kp F12>;
+        };
+        combo_may {
+            timeout-ms = <50>;
+            key-positions = <17 18>;
+            bindings = <&kp CAPS>;
+        };
+    };
+
+   behaviors {
+      bspc_del: backspace_delete {
+         compatible = "zmk,behavior-mod-morph";
+         #binding-cells = <0>;
+         bindings = <&kp BACKSPACE>, <&kp DELETE>;
+         mods = <(MOD_LSFT|MOD_RSFT)>;
+         keep-mods = <(MOD_RSFT)>;
+      };
+
+      ht: hold_tap {
+         label = "hold_tap";
+         compatible = "zmk,behavior-hold-tap";
+         #binding-cells = <2>;
+         flavor = "tap-preferred";
+         tapping-term-ms = <220>;
+         quick-tap-ms = <150>;
+         global-quick-tap;
+         bindings = <&kp>, <&kp>;
+      };
+   };
+
+   conditional_layers {
+      compatible = "zmk,conditional-layers";
+      tri_layer {
+         if-layers = <LOWER RAISE>;
+         then-layer = <ADJUS>;
+      };
+   };
+
+};
