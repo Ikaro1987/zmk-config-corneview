@@ -88,6 +88,15 @@
         };
     };
 
+    macros {
+        macro_a: macro_a {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&kp RIGHT_ALT &kp KP_NUMBER_0 &kp KP_NUMBER_2 &kp KP_NUMBER_4 &kp KP_NUMBER_3>;
+            label = "MACRO_A";
+        };
+    };
+
     keymap {
         compatible = "zmk,keymap";
 
@@ -111,7 +120,7 @@
 
         raise {
             bindings = <
-&none  &none     &none     &none      &none      &none    &kp PG_UP  &kp HOME  &kp UP    &kp END    &none  &kp INS
+&none  &none     &none     &none      &macro_a      &none    &kp PG_UP  &kp HOME  &kp UP    &kp END    &none  &kp INS
 &none  &kp RALT  &kp LGUI  &kp LCTRL  &kp LSHFT  &none    &kp PG_DN  &kp LEFT  &kp DOWN  &kp RIGHT  &none  &none
 &none  &none     &none     &none      &none      &none    &none      &none     &none     &none      &none  &none
                            &none      &trans     &none    &none      &trans    &none
