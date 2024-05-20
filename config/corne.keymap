@@ -94,10 +94,40 @@
             #binding-cells = <0>;
             bindings =
                 <&macro_press &kp RALT>,
-                <&macro_tap &kp KP_NUMBER_0 &kp KP_NUMBER_2 &kp KP_NUMBER_4 &kp KP_NUMBER_3>,
+                <&macro_tap &kp KP_NUMBER_0 &kp KP_NUMBER_2 &kp KP_NUMBER_2 &kp KP_NUMBER_5>,
                 <&macro_release &kp RALT>;
 
             label = "MACRO_A";
+        };
+        macro_i: macro_i {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings =
+                <&macro_press &kp RALT>,
+                <&macro_tap &kp KP_NUMBER_0 &kp KP_NUMBER_2 &kp KP_NUMBER_3 &kp KP_NUMBER_7>,
+                <&macro_release &kp RALT>;
+
+            label = "MACRO_I";
+        };
+        macro_o: macro_o {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings =
+                <&macro_press &kp RALT>,
+                <&macro_tap &kp KP_NUMBER_0 &kp KP_NUMBER_2 &kp KP_NUMBER_4 &kp KP_NUMBER_3>,
+                <&macro_release &kp RALT>;
+
+            label = "MACRO_O";
+        };
+        macro_n: macro_n {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings =
+                <&macro_press &kp RALT>,
+                <&macro_tap &kp KP_NUMBER_0 &kp KP_NUMBER_2 &kp KP_NUMBER_4 &kp KP_NUMBER_1s>,
+                <&macro_release &kp RALT>;
+
+            label = "MACRO_N";
         };
     };
 
@@ -124,9 +154,9 @@
 
         raise {
             bindings = <
-&none  &none     &none     &none      &macro_a      &none    &kp PG_UP  &kp HOME  &kp UP    &kp END    &none  &kp INS
-&none  &kp RALT  &kp LGUI  &kp LCTRL  &kp LSHFT  &none    &kp PG_DN  &kp LEFT  &kp DOWN  &kp RIGHT  &none  &none
-&none  &none     &none     &none      &none      &none    &none      &none     &none     &none      &none  &none
+&macro_n  &macro_a   &none     &macro_i    &macro_o    &none    &kp PG_UP  &kp HOME  &kp UP    &kp END    &none  &kp INS
+&none     &kp RALT   &kp LGUI  &kp LCTRL   &kp LSHFT   &none    &kp PG_DN  &kp LEFT  &kp DOWN  &kp RIGHT  &none  &none
+&none     &none      &none     &none       &none       &none    &none      &none     &none     &none      &none  &none
                            &none      &trans     &none    &none      &trans    &none
             >;
         };
