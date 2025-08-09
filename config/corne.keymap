@@ -15,6 +15,7 @@
 #define SYMB    4
 #define MACB    5
 #define MACR    6
+#define MOUSE   7
 
 / {
     combos {
@@ -28,6 +29,11 @@
         cmb_win {
             key-positions = <17 18>;
             bindings = <&to 0>;
+        };
+
+        cmb_mouse {
+            bindings = <&to 7>;
+            key-positions = <38 39>;
         };
 
         cmb_f5 {
@@ -207,6 +213,15 @@
 &none     &kp RALT  &kp LGUI  &kp LCTRL  &kp LSHFT  &none    &kp PG_DN  &kp LEFT      &kp DOWN  &kp RIGHT      &msc SCRL_DOWN  &none
 &none     &none     &none     &none      &none      &none    &none      &kp LA(LEFT)  &none     &kp LA(RIGHT)  &none           &none
                               &none      &trans     &none    &none      &trans        &none
+            >;
+        };
+
+        mouse {
+            bindings = <
+&none  &none  &mkp LCLK       &msc SCRL_UP    &mkp RCLK        &none    &none  &mkp LCLK       &mmv MOVE_UP    &mkp RCLK        &none  &none
+&none  &none  &msc SCRL_LEFT  &msc SCRL_DOWN  &msc SCRL_RIGHT  &none    &none  &mmv MOVE_LEFT  &mmv MOVE_DOWN  &mmv MOVE_RIGHT  &none  &none
+&none  &none  &none           &none           &none            &none    &none  &none           &none           &none            &none
+                              &none           &none            &none    &none  &none           &none
             >;
         };
     };
