@@ -212,7 +212,7 @@
 &macro_n  &macro_a  &none     &macro_i   &macro_o   &none    &kp PG_UP  &kp LG(LEFT)  &kp UP    &kp LG(RIGHT)  &msc SCRL_UP    &kp INS
 &none     &kp RALT  &kp LGUI  &kp LCTRL  &kp LSHFT  &none    &kp PG_DN  &kp LEFT      &kp DOWN  &kp RIGHT      &msc SCRL_DOWN  &none
 &none     &none     &none     &none      &none      &none    &none      &kp LA(LEFT)  &none     &kp LA(RIGHT)  &none           &none
-                              &none      &trans     &none    &none      &trans        &none
+                              &none      &trans     &none    &none      &trans        &trans
             >;
         };
 
