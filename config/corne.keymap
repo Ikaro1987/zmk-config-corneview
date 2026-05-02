@@ -20,13 +20,13 @@
         compatible = "zmk,combos";
 
         cmb_base {
-            bindings = <&to 0>;
             key-positions = <17 18>;
+            bindings = <&to 0>;
         };
 
         cmb_mouse {
-            bindings = <&to 5>;
             key-positions = <38 39>;
+            bindings = <&to 5>;
         };
 
         cmb_f5 {
