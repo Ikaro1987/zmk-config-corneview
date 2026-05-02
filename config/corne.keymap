@@ -100,20 +100,6 @@
             label = "MACRO_A";
         };
 
-        macro_e: macro_e {
-            compatible = "zmk,behavior-macro";
-            #binding-cells = <0>;
-            bindings =
-                <&macro_press>,
-                <&kp RALT>,
-                <&macro_tap>,
-                <&kp KP_NUMBER_0 &kp KP_NUMBER_2 &kp KP_NUMBER_3 &kp KP_NUMBER_3>,
-                <&macro_release>,
-                <&kp RALT>;
-
-            label = "MACRO_E";
-        };
-
         macro_i: macro_i {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
@@ -140,20 +126,6 @@
                 <&kp RALT>;
 
             label = "MACRO_O";
-        };
-
-        macro_u: macro_u {
-            compatible = "zmk,behavior-macro";
-            #binding-cells = <0>;
-            bindings =
-                <&macro_press>,
-                <&kp RALT>,
-                <&macro_tap>,
-                <&kp KP_NUMBER_0 &kp KP_NUMBER_2 &kp KP_NUMBER_5 &kp KP_NUMBER_0>,
-                <&macro_release>,
-                <&kp RALT>;
-
-            label = "MACRO_U";
         };
 
         macro_n: macro_n {
