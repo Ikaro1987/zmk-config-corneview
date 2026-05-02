@@ -13,26 +13,19 @@
 #define RAISE   2
 #define ADJUS   3
 #define SYMB    4
-#define MACB    5
-#define MACR    6
-#define MOUSE   7
+#define MOUSE   5
 
 / {
     combos {
         compatible = "zmk,combos";
 
-        cmb_mac {
-            bindings = <&to 5>;
-            key-positions = <5 6>;
-        };
-
-        cmb_win {
-            key-positions = <17 18>;
+        cmb_base {
             bindings = <&to 0>;
+            key-positions = <17 18>;
         };
 
         cmb_mouse {
-            bindings = <&to 7>;
+            bindings = <&to 5>;
             key-positions = <38 39>;
         };
 
@@ -223,24 +216,6 @@
 &none      &kp PIPE  &kp LBRC  &kp RBRC  &kp UNDER  &kp PLUS     &none      &none     &none      &none     &kp COLON  &none
 &kp TILDE  &kp BSLH  &kp LBKT  &kp RBKT  &kp MINUS  &kp EQUAL    &none      &none     &kp LT     &kp GT    &kp QMARK  &kp DOUBLE_QUOTES
                                &none     &trans     &none        &none      &trans    &trans
-            >;
-        };
-
-        macb {
-            bindings = <
-&kp TAB    &kp Q            &kp W        &kp E         &kp R          &kp T        &kp Y      &kp U          &kp I         &kp O        &kp P                &kp BACKSPACE
-&kp ESC    &hml LEFT_ALT A  &hml LGUI S  &hml LCTRL D  &hml LSHIFT F  &kp G        &kp H      &hmr RSHIFT J  &hmr RCTRL K  &hmr RGUI L  &hmr RIGHT_ALT SEMI  &kp DEL
-&kp GRAVE  &kp Z            &kp X        &kp C         &kp V          &kp B        &kp N      &kp M          &kp COMMA     &kp DOT      &kp FSLH             &kp SQT
-                                         &kp LGUI      &mo LOWER      &kp ENTER    &kp SPACE  &mo MACR       &mo SYMB
-            >;
-        };
-
-        macr {
-            bindings = <
-&macro_n  &macro_a  &macro_e  &macro_i   &macro_o   &macro_u  &kp PG_UP  &kp LG(LEFT)  &kp UP    &kp LG(RIGHT)  &msc SCRL_UP    &kp INS
-&none     &kp RALT  &kp LGUI  &kp LCTRL  &kp LSHFT  &none     &kp PG_DN  &kp LEFT      &kp DOWN  &kp RIGHT      &msc SCRL_DOWN  &none
-&none     &none     &none     &none      &none      &none     &none      &kp LA(LEFT)  &none     &kp LA(RIGHT)  &none           &none
-                              &none      &trans     &none     &none      &trans        &trans
             >;
         };
 
